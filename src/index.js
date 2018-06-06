@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import QuestionShowPage from "./components/QuestionShowPage";
+import App from "./components/App";
 import registerServiceWorker from "./registerServiceWorker";
 
-ReactDOM.render(<QuestionShowPage />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById("root"));
 registerServiceWorker();
