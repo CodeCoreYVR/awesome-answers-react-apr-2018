@@ -24,13 +24,13 @@ function QuestionDetails(props) {
   );
 }
 
-function AnswerDetails() {
+function AnswerDetails(props) {
   return (
     <div className="AnswerDetails">
-      <p>Red.</p>
-      <p>By King Arthur</p>
+      <p>{props.body}</p>
+      <p>By {props.author.full_name}</p>
       <p>
-        <strong>Created At:</strong> 2018-01-02
+        <strong>Created At:</strong> {props.created_at.toLocaleString()}
       </p>
     </div>
   );
@@ -46,7 +46,11 @@ function QuestionShowPage() {
         view_count={10}
         created_at={new Date()}
       />
-      <AnswerDetails />
+      <AnswerDetails
+        body="Blue. No, wait!"
+        author={{ full_name: "Sir Robin" }}
+        created_at={new Date()}
+      />
     </main>
   );
 }
