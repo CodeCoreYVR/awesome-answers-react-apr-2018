@@ -3,6 +3,14 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import registerServiceWorker from "./registerServiceWorker";
 
+function Field(props) {
+  return (
+    <p>
+      <strong>{props.name}:</strong> {props.value}
+    </p>
+  );
+}
+
 // All React component names must begin with a capital letter
 function QuestionDetails(props) {
   // When destructuring, we can set a default
@@ -14,12 +22,8 @@ function QuestionDetails(props) {
       <h1>{props.title}</h1>
       <p>{props.body}</p>
       <p>By {author.full_name}</p>
-      <p>
-        <strong>View Count:</strong> {props.view_count}
-      </p>
-      <p>
-        <strong>Created at:</strong> {props.created_at.toLocaleString()}
-      </p>
+      <Field name="View Count" value={props.view_count} />
+      <Field name="Created At" value={props.created_at.toLocaleString()} />
     </div>
   );
 }
@@ -29,9 +33,7 @@ function AnswerDetails(props) {
     <div className="AnswerDetails">
       <p>{props.body}</p>
       <p>By {props.author.full_name}</p>
-      <p>
-        <strong>Created At:</strong> {props.created_at.toLocaleString()}
-      </p>
+      <Field name="Created At" value={props.created_at.toLocaleString()} />
     </div>
   );
 }
