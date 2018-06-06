@@ -32,5 +32,14 @@ function AnswerDetails() {
   );
 }
 
-ReactDOM.render(<AnswerDetails />, document.getElementById("root"));
+function QuestionShowPage() {
+  return (
+    <main className="QuestionShowPage">
+      <QuestionDetails />
+      <AnswerDetails />
+    </main>
+  );
+}
+
+ReactDOM.render(<QuestionShowPage />, document.getElementById("root"));
 registerServiceWorker();
