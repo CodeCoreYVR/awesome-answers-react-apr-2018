@@ -20,5 +20,17 @@ function QuestionDetails() {
   );
 }
 
-ReactDOM.render(<QuestionDetails />, document.getElementById("root"));
+function AnswerDetails() {
+  return (
+    <div className="AnswerDetails">
+      <p>Red.</p>
+      <p>By King Arthur</p>
+      <p>
+        <strong>Created At:</strong> 2018-01-02
+      </p>
+    </div>
+  );
+}
+
+ReactDOM.render(<AnswerDetails />, document.getElementById("root"));
 registerServiceWorker();
