@@ -6,7 +6,10 @@ function AnswerDetails(props) {
     <div className="AnswerDetails">
       <p>{props.body}</p>
       <p>By {props.author.full_name}</p>
-      <Field name="Created At" value={props.created_at.toLocaleString()} />
+      <Field
+        name="Created At"
+        value={new Date(props.created_at).toLocaleString()}
+      />
     </div>
   );
 }
