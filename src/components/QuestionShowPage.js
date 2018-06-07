@@ -16,13 +16,32 @@ class QuestionShowPage extends Component {
     this.state = {
       question: { ...detailedQuestion }
     };
+
+    this.deleteQuestion = this.deleteQuestion.bind(this);
+  }
+
+  deleteQuestion() {
+    this.setState({
+      question: null
+    });
   }
 
   render() {
+    const { question } = this.state;
+
+    if (question === null) {
+      return (
+        <main className="QuestionShowPage">
+          <h1>Question doesn't exist!</h1>
+        </main>
+      );
+    }
+
     return (
       <main className="QuestionShowPage">
-        <QuestionDetails {...this.state.question} />
-        <AnswerList answers={this.state.question.answers} />
+        <QuestionDetails {...question} />
+        <button onClick={this.deleteQuestion}>Delete</button>
+        <AnswerList answers={question.answers} />
       </main>
     );
   }
