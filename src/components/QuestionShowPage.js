@@ -4,6 +4,7 @@
 import React, { Component } from "react";
 import QuestionDetails from "./QuestionDetails";
 import AnswerList from "./AnswerList";
+import AnswerForm from "./AnswerForm";
 import detailedQuestion from "../data/detailedQuestion";
 
 class QuestionShowPage extends Component {
@@ -19,6 +20,7 @@ class QuestionShowPage extends Component {
 
     this.deleteQuestion = this.deleteQuestion.bind(this);
     this.deleteAnswer = this.deleteAnswer.bind(this);
+    this.createAnswer = this.createAnswer.bind(this);
   }
 
   deleteQuestion() {
@@ -38,6 +40,17 @@ class QuestionShowPage extends Component {
     });
   }
 
+  createAnswer(answerParams) {
+    const { question } = this.state;
+
+    this.setState({
+      question: {
+        ...question,
+        answers: [answerParams, ...question.answers]
+      }
+    });
+  }
+
   render() {
     const { question } = this.state;
 
@@ -53,6 +66,8 @@ class QuestionShowPage extends Component {
       <main className="QuestionShowPage">
         <QuestionDetails {...question} />
         <button onClick={this.deleteQuestion}>Delete</button>
+        <h2>Answers</h2>
+        <AnswerForm onSubmit={this.createAnswer} />
         <AnswerList
           onAnswerDeleteClick={this.deleteAnswer}
           answers={question.answers}
