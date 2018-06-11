@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Field from "./Field";
 import Question from "../requests/question";
 
@@ -19,7 +20,6 @@ class QuestionIndexPage extends Component {
 
   componentDidMount() {
     Question.all().then(questions => {
-      console.log(questions);
       this.setState({
         questions: questions
       });
@@ -49,7 +49,7 @@ class QuestionIndexPage extends Component {
         <ul style={{ padding: 0, listStyle: "none" }}>
           {this.state.questions.map(question => (
             <li key={question.id}>
-              <a href="">{question.title}</a>
+              <Link to={`/questions/${question.id}`}>{question.title}</Link>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <button data-id={question.id} onClick={this.deleteQuestion}>
                   Delete

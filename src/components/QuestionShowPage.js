@@ -15,6 +15,7 @@ class QuestionShowPage extends Component {
     super(props);
 
     this.state = {
+      loading: true,
       question: null
     };
 
@@ -24,9 +25,15 @@ class QuestionShowPage extends Component {
   }
 
   componentDidMount() {
-    Question.one(27).then(question => {
+    // Any component rendered by <Route /> will be passed three
+    // props: history, location and match.
+    // Use match to the current URL params.
+    const questionId = this.props.match.params.id;
+
+    Question.one(questionId).then(question => {
       this.setState({
-        question: question
+        question: question,
+        loading: false
       });
     });
   }
@@ -60,12 +67,20 @@ class QuestionShowPage extends Component {
   }
 
   render() {
-    const { question } = this.state;
+    const { question, loading } = this.state;
+
+    if (loading) {
+      return (
+        <main className="QuestionShowPage">
+          <h2>Loading...</h2>
+        </main>
+      );
+    }
 
     if (question === null) {
       return (
         <main className="QuestionShowPage">
-          <h1>Question doesn't exist!</h1>
+          <h2>Question doesn't exist!</h2>
         </main>
       );
     }

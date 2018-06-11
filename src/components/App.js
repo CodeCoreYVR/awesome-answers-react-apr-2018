@@ -23,8 +23,8 @@ class App extends Component {
         <div className="App">
           <NavBar />
           <Route exact path="/" component={WelcomePage} />
-          <Route path="/questions" component={QuestionIndexPage} />
-          {/* <QuestionShowPage /> */}
+          <Route exact path="/questions" component={QuestionIndexPage} />
+          <Route exact path="/questions/:id" component={QuestionShowPage} />
         </div>
       </Router>
     );
