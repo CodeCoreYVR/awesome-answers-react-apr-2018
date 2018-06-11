@@ -8,6 +8,9 @@ function NavBar(props) {
       <NavLink exact to="/">
         Welcome
       </NavLink>
+      <NavLink exact to="/questions/new">
+        New Question
+      </NavLink>
       <NavLink exact to="/questions">
         Questions
       </NavLink>
