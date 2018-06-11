@@ -1,15 +1,13 @@
 import React, { Component } from "react";
 import Field from "./Field";
-import allQuestions from "../data/allQuestions";
+import Question from "../requests/question";
 
 class QuestionIndexPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      questions: [...allQuestions]
-      // using to create copy of allQuestions' to avoid mutating it
-      // when mutating the error.
+      questions: []
     };
 
     // To retain `this` inside a method when its function as a callback,
@@ -17,6 +15,15 @@ class QuestionIndexPage extends Component {
     // `bind` will return a new function that is a copy of the original
     // where its `this` is permanently set.
     this.deleteQuestion = this.deleteQuestion.bind(this);
+  }
+
+  componentDidMount() {
+    Question.all().then(questions => {
+      console.log(questions);
+      this.setState({
+        questions: questions
+      });
+    });
   }
 
   deleteQuestion(event) {
