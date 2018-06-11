@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+// PAGES
 import QuestionShowPage from "./QuestionShowPage";
 import QuestionIndexPage from "./QuestionIndexPage";
-import Clock from "./Clock";
+import WelcomePage from "./WelcomePage";
+
+import NavBar from "./NavBar";
 import Session from "../requests/session";
 
 class App extends Component {
@@ -14,11 +19,14 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Clock />
-        <QuestionIndexPage />
-        <QuestionShowPage />
-      </div>
+      <Router>
+        <div className="App">
+          <NavBar />
+          <Route exact path="/" component={WelcomePage} />
+          <Route path="/questions" component={QuestionIndexPage} />
+          {/* <QuestionShowPage /> */}
+        </div>
+      </Router>
     );
   }
 }

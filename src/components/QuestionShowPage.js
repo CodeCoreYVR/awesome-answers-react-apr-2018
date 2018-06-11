@@ -5,7 +5,7 @@ import React, { Component } from "react";
 import QuestionDetails from "./QuestionDetails";
 import AnswerList from "./AnswerList";
 import AnswerForm from "./AnswerForm";
-import detailedQuestion from "../data/detailedQuestion";
+import Question from "../requests/question";
 
 class QuestionShowPage extends Component {
   constructor(props) {
@@ -15,12 +15,20 @@ class QuestionShowPage extends Component {
     super(props);
 
     this.state = {
-      question: { ...detailedQuestion }
+      question: null
     };
 
     this.deleteQuestion = this.deleteQuestion.bind(this);
     this.deleteAnswer = this.deleteAnswer.bind(this);
     this.createAnswer = this.createAnswer.bind(this);
+  }
+
+  componentDidMount() {
+    Question.one(27).then(question => {
+      this.setState({
+        question: question
+      });
+    });
   }
 
   deleteQuestion() {
