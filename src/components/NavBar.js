@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import Clock from "./Clock";
 
 function NavBar(props) {
+  console.log(props);
   return (
     <nav className="NavBar">
       <NavLink exact to="/">
