@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import User from "../requests/user";
+import Session from "../requests/session";
 const { Consumer, Provider } = React.createContext({});
 
 const initialState = {
@@ -12,11 +13,20 @@ export class Authenticator extends Component {
     super(props);
 
     this.reload = this.reload.bind(this);
+    this.signOut = this.signOut.bind(this);
 
     // We pass method "reload" in the state to allow consumers
     // of this provider to call it from props.
     // When doing this, you must bind because it acts as a callback.
-    this.state = { ...initialState, reload: this.reload };
+    this.state = {
+      ...initialState,
+      reload: this.reload,
+      signOut: this.signOut
+    };
+  }
+
+  signOut() {
+    return Session.destroy().then(() => this.reload());
   }
 
   reload() {

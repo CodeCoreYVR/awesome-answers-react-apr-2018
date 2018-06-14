@@ -10,5 +10,11 @@ export default {
       credentials: "include",
       body: JSON.stringify(params)
     }).then(response => response.json());
+  },
+  destroy() {
+    return fetch(`${BASE_URL}/session`, {
+      method: "DELETE",
+      credentials: "include"
+    });
   }
 };

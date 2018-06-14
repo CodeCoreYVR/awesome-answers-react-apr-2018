@@ -10,8 +10,6 @@ const AuthRoute = props => {
       {authProps => {
         const { user, loading } = authProps;
 
-        console.log(authProps);
-
         if (loading) return null;
 
         if (user === null && redirect) {
