@@ -3,6 +3,8 @@ import { Route, Redirect } from "react-router-dom";
 import { Authenticate } from "./Authenticator";
 
 const AuthRoute = props => {
+  const { redirect = true, render, component: Component, ...restProps } = props;
+
   return (
     <Authenticate>
       {authProps => {
@@ -12,10 +14,17 @@ const AuthRoute = props => {
 
         if (loading) return null;
 
-        if (user === null) {
+        if (user === null && redirect) {
           return <Redirect to="/session/new" />;
         } else {
-          return <Route {...props} />;
+          return (
+            <Route
+              render={routeProps => (
+                <Component {...routeProps} auth={authProps} />
+              )}
+              {...restProps}
+            />
+          );
         }
       }}
     </Authenticate>

@@ -20,15 +20,10 @@ class App extends Component {
             <Authenticate>{props => <NavBar auth={props} />}</Authenticate>
             <Switch>
               <Route exact path="/" component={WelcomePage} />
-              <Route
+              <AuthRoute
+                redirect={false}
                 path="/session/new"
-                render={routeProps => (
-                  <Authenticate>
-                    {authProps => (
-                      <SignInPage {...routeProps} auth={authProps} />
-                    )}
-                  </Authenticate>
-                )}
+                component={SignInPage}
               />
               <AuthRoute
                 exact
