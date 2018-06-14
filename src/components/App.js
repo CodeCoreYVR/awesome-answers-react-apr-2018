@@ -19,7 +19,16 @@ class App extends Component {
             <Authenticate>{props => <NavBar auth={props} />}</Authenticate>
             <Switch>
               <Route exact path="/" component={WelcomePage} />
-              <Route path="/session/new" component={SignInPage} />
+              <Route
+                path="/session/new"
+                render={routeProps => (
+                  <Authenticate>
+                    {authProps => (
+                      <SignInPage {...routeProps} auth={authProps} />
+                    )}
+                  </Authenticate>
+                )}
+              />
               <Route exact path="/questions" component={QuestionIndexPage} />
               <Route path="/questions/new" component={QuestionNewPage} />
               <Route path="/questions/:id" component={QuestionShowPage} />

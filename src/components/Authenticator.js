@@ -11,17 +11,28 @@ export class Authenticator extends Component {
   constructor(props) {
     super(props);
 
-    this.state = initialState;
+    this.reload = this.reload.bind(this);
+
+    // We pass method "reload" in the state to allow consumers
+    // of this provider to call it from props.
+    // When doing this, you must bind because it acts as a callback.
+    this.state = { ...initialState, reload: this.reload };
   }
 
-  componentDidMount() {
-    User.current().then(data => {
+  reload() {
+    this.setState({ loading: true });
+
+    return User.current().then(data => {
       if (data.status !== 401) {
         this.setState({ loading: false, user: data });
       } else {
         this.setState({ loading: false, user: null });
       }
     });
+  }
+
+  componentDidMount() {
+    this.reload();
   }
 
   render() {
