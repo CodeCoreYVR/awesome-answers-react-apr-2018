@@ -8,6 +8,7 @@ import QuestionNewPage from "./QuestionNewPage";
 import SignInPage from "./SignInPage";
 import WelcomePage from "./WelcomePage";
 import { Authenticator, Authenticate } from "./Authenticator";
+import AuthRoute from "./AuthRoute";
 import NavBar from "./NavBar";
 
 class App extends Component {
@@ -29,8 +30,12 @@ class App extends Component {
                   </Authenticate>
                 )}
               />
-              <Route exact path="/questions" component={QuestionIndexPage} />
-              <Route path="/questions/new" component={QuestionNewPage} />
+              <AuthRoute
+                exact
+                path="/questions"
+                component={QuestionIndexPage}
+              />
+              <AuthRoute path="/questions/new" component={QuestionNewPage} />
               <Route path="/questions/:id" component={QuestionShowPage} />
             </Switch>
           </div>
