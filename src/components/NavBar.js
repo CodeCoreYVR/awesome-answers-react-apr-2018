@@ -14,6 +14,9 @@ function NavBar(props) {
       <NavLink exact to="/questions">
         Questions
       </NavLink>
+      <NavLink exact to="/session/new">
+        Sign In
+      </NavLink>
       <Clock />
     </nav>
   );

@@ -5,19 +5,11 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import QuestionShowPage from "./QuestionShowPage";
 import QuestionIndexPage from "./QuestionIndexPage";
 import QuestionNewPage from "./QuestionNewPage";
+import SignInPage from "./SignInPage";
 import WelcomePage from "./WelcomePage";
-
 import NavBar from "./NavBar";
-import Session from "../requests/session";
 
 class App extends Component {
-  componentDidMount() {
-    Session.create({
-      email: "js@winterfell.gov",
-      password: "supersecret"
-    });
-  }
-
   render() {
     return (
       <Router>
@@ -25,6 +17,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <Route exact path="/" component={WelcomePage} />
+            <Route path="/session/new" component={SignInPage} />
             <Route exact path="/questions" component={QuestionIndexPage} />
             <Route path="/questions/new" component={QuestionNewPage} />
             <Route path="/questions/:id" component={QuestionShowPage} />
