@@ -3,6 +3,8 @@ import { NavLink } from "react-router-dom";
 import Clock from "./Clock";
 
 function NavBar(props) {
+  const { auth } = props;
+
   return (
     <nav className="NavBar">
       <NavLink exact to="/">
@@ -14,9 +16,13 @@ function NavBar(props) {
       <NavLink exact to="/questions">
         Questions
       </NavLink>
-      <NavLink exact to="/session/new">
-        Sign In
-      </NavLink>
+      {auth.user === null ? (
+        <NavLink exact to="/session/new">
+          Sign In
+        </NavLink>
+      ) : (
+        <span>👩‍💻 {auth.user.full_name}</span>
+      )}
       <Clock />
     </nav>
   );
